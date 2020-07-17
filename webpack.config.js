@@ -1,12 +1,13 @@
 var path = require('path')
 var entryPath = 'development'
+var outputPath = 'production'
 var entryFile = 'app.js'
 
 module.exports = {
   entry: `./${entryPath}/js/${entryFile}`,
   output: {
     filename: 'out.js',
-    path: path.resolve(__dirname, `${entryPath}/js`),
+    path: path.resolve(__dirname, `${outputPath}/js`),
   },
   mode: 'production', // lub "development"
   devtool: 'source-map',
