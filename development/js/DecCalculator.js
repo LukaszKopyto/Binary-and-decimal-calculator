@@ -18,13 +18,12 @@ class DecCalculator extends Calculator {
         result[i] = outcome
       }
     }
-    console.table(result)
-    console.log('Method add > result' + result)
     return result
   }
   changeNumber() {
     this.$calculatorDOMElement.find('.active').on('click', (e) => {
       $(e.target).empty().attr('contenteditable', 'true').focus()
+      this.validate()
     })
   }
   updateResult() {
@@ -45,6 +44,15 @@ class DecCalculator extends Calculator {
     this.$calculatorDOMElement.find('.operator-bar__add').on('click', (e) => {
       this.checkNumber()
       this.updateResult()
+    })
+  }
+  validate() {
+    this.$calculatorDOMElement.find('.active').on('keydown', function (e) {
+      if (!(e.which >= 48 && e.which <= 57)) {
+        return false
+      } else if ($(e.currentTarget).text().length === 1) {
+        return false
+      }
     })
   }
 }
