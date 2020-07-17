@@ -19,6 +19,7 @@ class DecCalculator extends Calculator {
       }
     }
     console.table(result)
+    console.log('Method add > result' + result)
     return result
   }
   changeNumber() {
@@ -26,7 +27,20 @@ class DecCalculator extends Calculator {
       $(e.target).empty().attr('contenteditable', 'true').focus()
     })
   }
-  updateResult() {}
+  updateResult() {
+    console.log(this.resultNumberArray)
+    let root = this.$calculatorDOMElement
+    let $resultNumber = root.children('.group-number').children('.result-bit')
+    for (let i = this.resultNumberArray.length - 1, j = 0; i >= 0; i--, j++) {
+      let valueResult = parseInt($resultNumber.eq(j).find('.active').text())
+      if (this.resultNumberArray[i] != valueResult) {
+        $resultNumber
+          .eq(j)
+          .children(':first-child')
+          .text(this.resultNumberArray[i])
+      }
+    }
+  }
   initEvents() {
     this.$calculatorDOMElement.find('.operator-bar__add').on('click', (e) => {
       this.checkNumber()
