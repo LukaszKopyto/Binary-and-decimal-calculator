@@ -53,6 +53,9 @@ class DecCalculator extends Calculator {
       } else if ($(e.currentTarget).text().length === 1) {
         return false
       }
+      $(e.currentTarget).keyup(() => {
+        $(this).parent().parent().parent().find('.tooltip').show(1200)
+      })
     })
   }
 }
